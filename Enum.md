@@ -21,7 +21,7 @@ class Week{
 
 class Driver{
 	psvm(){
-		Week firstDay=Week.SUN;   // var firstDay now refers the same object referred                                      by SUN
+		Week firstDay=Week.SUN;   // var firstDay now refers the same object referred by SUN
 	}
 }
 ```
