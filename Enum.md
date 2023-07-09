@@ -169,6 +169,8 @@ Dangerous colour
 Good colour
 ```
 
+* **Note, to override info() in Red constant, you must have info() in enum level**
+
 ## enum vs Enum vs Enumeration:
 ### enum: 
 	is a keyword in java which can be used to Define a Group named Constants.
@@ -178,3 +180,27 @@ Good colour
 #### Enumeration
 	It is an interface present in java.util package.
 	Its a cursor to get object from a collection one-by-one as a cursor.
+
+## enum is, generally the best way to create singleton classes.
+
+```java
+public enum Singleton{
+	UNIQUE_INSTANCE;
+	// more useful methods, fields here
+}
+
+public class SingletonUser{
+	psvm(){
+		Singleton s= Singleton.UNIQUE_INSTANCE;
+		// using the singleton here
+	}
+}
+```
+
+#### why enum is the best way for singleton?
+For requirements (or properties) of singleton:
+1. We want to create 1(, and only 1) object of singleton when some consumer asks for it first. I dont want to block my resources with useless class, (useless in terms no one asked for it)
+2. I want to have guarantee that by no way more than 1 object created, even considering multi-threaded environment.
+#### enum satisfies these both requirements.
+1. enum is not compile-time constant. So an instance of enum only creates when its been called for 1st time. Note, from consumer's view it doesn't know whether it is the 1st consumer neither it holds responsiblity to create an object of enum. Its handled by JVM
+2. Remember, instance of enum is actually `static final`.  By having static JVM makes sure no 2 instance of the object created in multithreaded env.
